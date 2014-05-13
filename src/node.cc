@@ -7,9 +7,10 @@ namespace traffic
     {
     }
     
-    bool Node::AddNeighbor(std::shared_ptr<Node> node, double distance)
+    bool Node::LinkNeighbors(std::shared_ptr<Node> node1, std::shared_ptr<Node> node2, double distance)
     {
-        neighbors[node] = distance;
+        node1->neighbors[node2] = distance;
+        node2->neighbors[node1] = distance;
         return true;
     }
     

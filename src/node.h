@@ -14,9 +14,9 @@ namespace traffic
         // Default Constructor
         Node();
         
-        // Add new node to the map of neighbors
+        // Add new node to the map of neighbors and vice versa
         // Returns status as bool
-        bool AddNeighbor(std::shared_ptr<Node> node, double distance);
+        static bool LinkNeighbors(std::shared_ptr<Node> node1, std::shared_ptr<Node> node2, double distance);
         
         // Get the distance from a node
         // Returns distance as a double, or -1 if not a neighbor
