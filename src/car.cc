@@ -1,10 +1,14 @@
 
 #include "car.h"
 
-Car::Car()
+namespace traffic
 {
-}
-
-Car::DriveTo(Node destination)
-{
+    Car::Car()
+    {
+    }
+    
+    void Car::DriveTo(std::shared_ptr<Node> dest)
+    {
+        return;
+    }
 }
