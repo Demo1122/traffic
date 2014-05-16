@@ -12,12 +12,16 @@ namespace traffic
     {
         public:
         // Default Constructor
-        Car();
+        Car(std::shared_ptr<Node> startLoc);
         
         // Advance to destination
-        void DriveTo(std::shared_ptr<Node> dest);
+        bool DriveTo(std::shared_ptr<Node> dest);
         
-        //private:
+        // Get car's location
+        std::shared_ptr<Node> GetLocation();
+        
+        private:
+        std::shared_ptr<Node> currentLoc;
     };
 }
 

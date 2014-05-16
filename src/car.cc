@@ -3,12 +3,18 @@
 
 namespace traffic
 {
-    Car::Car()
+    Car::Car(std::shared_ptr<Node> startLoc)
     {
+        currentLoc = startLoc;
     }
     
-    void Car::DriveTo(std::shared_ptr<Node> dest)
+    bool Car::DriveTo(std::shared_ptr<Node> dest)
     {
-        return;
+        currentLoc = dest;
+    }
+    
+    std::shared_ptr<Node> Car::GetLocation()
+    {
+        return currentLoc;
     }
 }

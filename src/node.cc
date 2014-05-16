@@ -3,8 +3,9 @@
 
 namespace traffic
 {
-    Node::Node()
+    Node::Node(std::string newName)
     {
+        name = newName;
     }
     
     bool Node::LinkNeighbors(std::shared_ptr<Node> node1, std::shared_ptr<Node> node2, double distance)
@@ -21,5 +22,10 @@ namespace traffic
         distance = neighbors[node];
         
         return distance;
+    }
+    
+    std::string Node::GetName()
+    {
+        return name;
     }
 }
