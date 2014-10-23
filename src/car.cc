@@ -1,17 +1,19 @@
 
+#include <iostream>
+
 #include "car.h"
 
 namespace traffic
 {
-    Car::Car(std::shared_ptr<Node> startLoc)
+    Car::Car(std::shared_ptr<Node> start)
     {
-        location = startLoc;
+        location = start;
     }
     
-    void Car::SetDestination(std::shared_ptr<Node> dest)
+    void Car::SetDestination(std::stack<std::shared_ptr<Node>> dest)
     {
         destination = dest;
-        distanceRemaining = location->GetDistanceFrom(dest);
+        distanceRemaining = location->GetDistanceFrom(destination.top());
     }
     
     std::shared_ptr<Node> Car::GetLocation()
@@ -19,17 +21,22 @@ namespace traffic
         return location;
     }
     
-    bool Car::Advance()
+    void Car::Advance()
     {
-        distanceRemaining -= avgVelocity/6;
-        if(distanceRemaining <= 0)
+        distanceRemaining -= avgVelocity;
+        if(distanceRemaining <= 0 && !destination.empty())
         {
-            location = destination;
+            location = destination.top();
+            destination.pop();
+            if(!destination.empty())
+            {
+                distanceRemaining += location->GetDistanceFrom(destination.top());
+            }
         }
     }
     
-    void Car::setAvgVelocity(float vel)
+    void Car::SetAvgVelocity(float v)
     {
-        avgVelocity = vel;
+        avgVelocity = v;
     }
 }

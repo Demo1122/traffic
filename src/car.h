@@ -3,6 +3,7 @@
 #define _CAR_H
 
 #include <memory>
+#include <stack>
 
 #include "node.h"
 
@@ -12,25 +13,25 @@ namespace traffic
     {
         public:
         // Default Constructor
-        Car(std::shared_ptr<Node> startLoc);
+        Car(std::shared_ptr<Node> start);
         
         // Advance to destination
-        void SetDestination(std::shared_ptr<Node> dest);
+        void SetDestination(std::stack<std::shared_ptr<Node>> dest);
         
         // Get car's location
         std::shared_ptr<Node> GetLocation();
         
         // Advance to destination
-        bool Advance();
+        void Advance();
         
-        // Set the car's avgVelocity field
-        void setAvgVelocity(float vel);
+        // Set the car's average velocity
+        void SetAvgVelocity(float v);
         
         private:
-        int distanceRemaining;
+        float distanceRemaining;
         float avgVelocity;
         std::shared_ptr<Node> location;
-        std::shared_ptr<Node> destination;
+        std::stack<std::shared_ptr<Node>> destination;
     };
 }
 
