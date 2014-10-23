@@ -5,16 +5,31 @@ namespace traffic
 {
     Car::Car(std::shared_ptr<Node> startLoc)
     {
-        currentLoc = startLoc;
+        location = startLoc;
     }
     
-    bool Car::DriveTo(std::shared_ptr<Node> dest)
+    void Car::SetDestination(std::shared_ptr<Node> dest)
     {
-        currentLoc = dest;
+        destination = dest;
+        distanceRemaining = location->GetDistanceFrom(dest);
     }
     
     std::shared_ptr<Node> Car::GetLocation()
     {
-        return currentLoc;
+        return location;
+    }
+    
+    bool Car::Advance()
+    {
+        distanceRemaining -= avgVelocity/6;
+        if(distanceRemaining <= 0)
+        {
+            location = destination;
+        }
+    }
+    
+    void Car::setAvgVelocity(float vel)
+    {
+        avgVelocity = vel;
     }
 }

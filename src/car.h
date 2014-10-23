@@ -15,13 +15,22 @@ namespace traffic
         Car(std::shared_ptr<Node> startLoc);
         
         // Advance to destination
-        bool DriveTo(std::shared_ptr<Node> dest);
+        void SetDestination(std::shared_ptr<Node> dest);
         
         // Get car's location
         std::shared_ptr<Node> GetLocation();
         
+        // Advance to destination
+        bool Advance();
+        
+        // Set the car's avgVelocity field
+        void setAvgVelocity(float vel);
+        
         private:
-        std::shared_ptr<Node> currentLoc;
+        int distanceRemaining;
+        float avgVelocity;
+        std::shared_ptr<Node> location;
+        std::shared_ptr<Node> destination;
     };
 }
 

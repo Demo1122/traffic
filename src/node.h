@@ -11,24 +11,27 @@ namespace traffic
     class Node
     {
         public:
-        // Default Constructor
+        // Constructor
         Node(std::string newName);
         
-        // Add new node to the map of neighbors and vice versa
-        // Returns status as bool
-        static bool LinkNeighbors(std::shared_ptr<Node> node1, std::shared_ptr<Node> node2, double distance);
+        // Add nodes to each other's map of neighbors and vice versa
+        // No difference between parameters node1 and node2
+        static void LinkNeighbors(std::shared_ptr<Node> node1, std::shared_ptr<Node> node2, double distance);
         
         // Get the distance from a node
-        // Returns distance as a double, or -1 if not a neighbor
-        double GetDistanceFrom(std::shared_ptr<Node> node);
+        // Returns distance as an int, or -1 if not a neighbor
+        int GetDistanceFrom(std::shared_ptr<Node> node);
         
+        // Returns the node's name field
         std::string GetName();
+        
+        std::map<std::shared_ptr<Node>, double> GetNeighbors();
         
         private:
         // Name of the node
         std::string name;
         
-        // Neighboring node name and distance
+        // Map of neighboring node names and distances
         std::map<std::shared_ptr<Node>, double> neighbors;
         
     };

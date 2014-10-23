@@ -8,16 +8,15 @@ namespace traffic
         name = newName;
     }
     
-    bool Node::LinkNeighbors(std::shared_ptr<Node> node1, std::shared_ptr<Node> node2, double distance)
+    void Node::LinkNeighbors(std::shared_ptr<Node> node1, std::shared_ptr<Node> node2, double distance)
     {
         node1->neighbors[node2] = distance;
         node2->neighbors[node1] = distance;
-        return true;
     }
     
-    double Node::GetDistanceFrom(std::shared_ptr<Node> node)
+    int Node::GetDistanceFrom(std::shared_ptr<Node> node)
     {
-        double distance = -1;
+        int distance = -1;
         
         distance = neighbors[node];
         
@@ -27,5 +26,10 @@ namespace traffic
     std::string Node::GetName()
     {
         return name;
+    }
+    
+    std::map<std::shared_ptr<Node>, double> Node::GetNeighbors()
+    {
+        return neighbors;
     }
 }
