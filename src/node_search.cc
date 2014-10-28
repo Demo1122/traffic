@@ -3,11 +3,40 @@
 
 namespace traffic
 {
-    void NodeSearch::Dijkstra(std::shared_ptr<NodeGraph> graph, std::shared_ptr<Node> src)
+    NodeSearch::NodeSearch(std::shared_ptr<NodeGraph> graph)
+    {
+        this->graph = graph;
+    }
+    
+    std::stack<std::shared_ptr<Node>> NodeSearch::FindShortestPath(
+        std::shared_ptr<Node> src,
+        std::shared_ptr<Node> dst)
+    {
+        // Determine if the the map needs to be recalculated
+        if(prev.size() == 0 || source != src)
+        {
+            source = src;
+            Dijkstra(source);
+        }
+        
+        std::stack<std::shared_ptr<Node>> s;
+        std::shared_ptr<Node> u = dst;
+        
+        while(prev[u])
+        {
+            s.push(u);
+            u = prev[u];
+        }
+        return s;
+    }
+    
+    void NodeSearch::Dijkstra(std::shared_ptr<Node> src)
     {
         std::set<std::shared_ptr<Node>> q;
         std::set<std::shared_ptr<Node>> vertices = graph->GetVertices();
+        std::map<std::shared_ptr<Node>, double> dist;
         
+        prev = std::map<std::shared_ptr<Node>, std::shared_ptr<Node>>();
         dist[src] = 0;
         
         for(auto it = vertices.begin(); it != vertices.end(); ++it)
@@ -40,24 +69,10 @@ namespace traffic
         }
     }
     
-    std::stack<std::shared_ptr<Node>> NodeSearch::FindShortestPath(std::shared_ptr<Node> dst)
-    {
-        std::stack<std::shared_ptr<Node>> s;
-        std::shared_ptr<Node> u = dst;
-        
-        while(prev[u])
-        {
-            s.push(u);
-            u = prev[u];
-        }
-        return s;
-    }
-    
     std::shared_ptr<Node> NodeSearch::GetClosestNode(std::set<std::shared_ptr<Node>> q, std::map<std::shared_ptr<Node>, double> dist)
     {
         auto it = q.begin();
-        std::shared_ptr<Node> min = *it;
-        ++it;
+        std::shared_ptr<Node> min = *it++;
         for(it; it != q.end(); ++it) {
             if(dist[*it] == 0 || (dist[*it] != -1 && dist[*it] < dist[min]))
             {

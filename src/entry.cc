@@ -23,16 +23,13 @@ int main(int argc, char* argv[])
     graph->AddVertex(buffalo);
     graph->AddVertex(syracuse);
     
-    auto searcher = std::make_shared<NodeSearch>();
-    searcher->Dijkstra(graph, buffalo);
-    
-    std::stack<std::shared_ptr<Node>> order = searcher->FindShortestPath(syracuse);
-    
     Car car(buffalo);
     car.SetAvgVelocity(30);
     
-    car.SetDestination(order);
-    for(int i = 0; i < 5; i++)
+    auto searcher = std::make_shared<NodeSearch>(graph);
+    
+    car.SetDestination(searcher->FindShortestPath(buffalo, syracuse));
+    for(int i = 0; i < 6; i++)
     {
         car.Advance();
         std::cout << "Car's current location: " << car.GetLocation()->GetName() << std::endl;
