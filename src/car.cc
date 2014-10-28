@@ -35,7 +35,7 @@ namespace traffic
         }
     }
     
-    void Car::SetAvgVelocity(float v)
+    void Car::SetAvgVelocity(double v)
     {
         avgVelocity = v;
     }

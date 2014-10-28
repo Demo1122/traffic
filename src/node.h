@@ -20,11 +20,12 @@ namespace traffic
         
         // Get the distance from a node
         // Returns distance as an int, or -1 if not a neighbor
-        int GetDistanceFrom(std::shared_ptr<Node> node);
+        double GetDistanceFrom(std::shared_ptr<Node> node);
         
         // Returns the node's name field
         std::string GetName();
         
+        // Returns the node's neighbors map
         std::map<std::shared_ptr<Node>, double> GetNeighbors();
         
         private:

@@ -14,9 +14,9 @@ namespace traffic
         node2->neighbors[node1] = distance;
     }
     
-    int Node::GetDistanceFrom(std::shared_ptr<Node> node)
+    double Node::GetDistanceFrom(std::shared_ptr<Node> node)
     {
-        int distance = -1;
+        double distance = -1;
         
         distance = neighbors[node];
         

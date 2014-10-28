@@ -25,11 +25,11 @@ namespace traffic
         void Advance();
         
         // Set the car's average velocity
-        void SetAvgVelocity(float v);
+        void SetAvgVelocity(double v);
         
         private:
-        float distanceRemaining;
-        float avgVelocity;
+        double distanceRemaining;
+        double avgVelocity;
         std::shared_ptr<Node> location;
         std::stack<std::shared_ptr<Node>> destination;
     };
