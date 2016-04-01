@@ -14,7 +14,8 @@ env.VariantDir('build', 'src', duplicate = 0)
 
 # Add source folders and glob their files
 source_folders = [
-    'build'
+    'build',
+    'build/seed',
 ]
 
 sources = []
