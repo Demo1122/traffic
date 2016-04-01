@@ -19,3 +19,7 @@
 *.exe
 *.out
 *.app
+
+# Environment
+.sconsign.dblite
+build/

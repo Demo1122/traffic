@@ -1,12 +1,24 @@
+import os
 
-env = Environment()
+env = Environment(
+    CXX = 'clang++',
+    CXXFLAGS = '-std=c++14',
+    CPPPATH = 'include'
+)
 
-# Set CPPFLAGS
-env.Append(CPPFLAGS = '-std=c++0x')
+# This enables colored clang output
+env['ENV']['TERM'] = os.environ['TERM']
 
+# Create build directory for output
 env.VariantDir('build', 'src', duplicate = 0)
 
-target = 'build/entry'
-sources = Glob('build/*.cc')
+# Add source folders and glob their files
+source_folders = [
+    'build'
+]
 
-exe = env.Program(target = target, source = sources)
+sources = []
+for path in source_folders:
+    sources.extend(Glob(path + '/*.cc'))
+
+exe = env.Program(target = 'entry', source = sources)
