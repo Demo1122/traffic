@@ -1,8 +1,13 @@
 import os
 
+cxxflags = [
+    '-std=c++14',
+    '-Wall',
+]
+
 env = Environment(
     CXX = 'clang++',
-    CXXFLAGS = '-std=c++14',
+    CXXFLAGS = cxxflags,
     CPPPATH = 'include'
 )
 
@@ -22,4 +27,4 @@ sources = []
 for path in source_folders:
     sources.extend(Glob(path + '/*.cc'))
 
-exe = env.Program(target = 'entry', source = sources)
+exe = env.Program(target = 'main', source = sources)
