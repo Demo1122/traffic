@@ -1,9 +1,0 @@
-Rochester
-Buffalo
-Syracuse
-Ithaca
-
-Rochester Buffalo 74.4
-Rochester Syracuse 88.5
-Rochester Ithaca 89.6
-Syracuse Ithaca 56.2

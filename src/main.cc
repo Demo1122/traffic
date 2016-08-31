@@ -11,27 +11,20 @@ using namespace traffic;
 
 int main(int argc, char* argv[])
 {
-    auto rochester = std::make_shared<Node>("Rochester");
-    auto buffalo = std::make_shared<Node>("Buffalo");
-    auto syracuse = std::make_shared<Node>("Syracuse");
-
-    Node::LinkNeighbors(rochester, buffalo, 60.0);
-    Node::LinkNeighbors(rochester, syracuse, 90.0);
-    Node::LinkNeighbors(buffalo, syracuse, 180.0);
-
     auto nodes = NodeGen::GetNodes();
 
     auto graph = std::make_shared<NodeGraph>();
-    graph->AddVertex(rochester);
-    graph->AddVertex(buffalo);
-    graph->AddVertex(syracuse);
+    for(const auto &node : nodes)
+    {
+        graph->AddVertex(node);
+    }
 
-    Car car(buffalo);
+    Car car(nodes[0]);
     car.SetAvgVelocity(30);
 
     auto searcher = std::make_shared<NodeSearch>(graph);
 
-    car.SetDestination(searcher->FindShortestPath(buffalo, syracuse));
+    car.SetDestination(searcher->FindShortestPath(nodes[0], nodes[nodes.size()-1]));
     for(int i = 0; i < 6; i++)
     {
         car.Advance();
