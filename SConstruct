@@ -3,6 +3,7 @@ import os
 cxxflags = [
     '-std=c++14',
     '-Wall',
+    '-g',
 ]
 
 env = Environment(
