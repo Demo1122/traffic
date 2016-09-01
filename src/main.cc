@@ -11,7 +11,7 @@ using namespace traffic;
 
 int main(int argc, char* argv[])
 {
-    auto nodes = NodeGen::GetNodes();
+    auto nodes = NodeGen::GetNodes("sample_nodes.tgf");
 
     auto graph = std::make_shared<NodeGraph>();
     graph->AddVertices(nodes);

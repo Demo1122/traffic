@@ -18,7 +18,7 @@ namespace traffic
     {
         public:
         
-        static std::vector<std::shared_ptr<Node>> GetNodes();
+        static std::vector<std::shared_ptr<Node>> GetNodes(const std::string);
         
         private:
         

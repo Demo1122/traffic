@@ -6,12 +6,12 @@ namespace traffic
 
     const std::string tgz_delimiter("#");
 
-    std::vector<std::shared_ptr<Node>> NodeGen::GetNodes()
+    std::vector<std::shared_ptr<Node>> NodeGen::GetNodes(const std::string fileName)
     {
         bool first_section = true;
         std::string line;
         std::vector<std::shared_ptr<Node>> nodes;
-        std::ifstream file ("sample_nodes.tgf");
+        std::ifstream file (fileName);
         std::map<int, std::shared_ptr<Node>> node_map;
 
         if(file.is_open())
