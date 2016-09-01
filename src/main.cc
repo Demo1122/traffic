@@ -14,10 +14,7 @@ int main(int argc, char* argv[])
     auto nodes = NodeGen::GetNodes();
 
     auto graph = std::make_shared<NodeGraph>();
-    for(const auto &node : nodes)
-    {
-        graph->AddVertex(node);
-    }
+    graph->AddVertices(nodes);
 
     Car car(nodes[0]);
     car.SetAvgVelocity(30);

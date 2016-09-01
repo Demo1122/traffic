@@ -4,6 +4,7 @@
 
 #include <memory>
 #include <set>
+#include <vector>
 
 #include "node.h"
 
@@ -15,6 +16,8 @@ namespace traffic
         std::set<std::shared_ptr<Node>> GetVertices();
         
         void AddVertex(std::shared_ptr<Node> v);
+
+        void AddVertices(std::vector<std::shared_ptr<Node>> nodes);
         
         private:
         std::set<std::shared_ptr<Node>> vertices;

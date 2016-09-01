@@ -12,4 +12,12 @@ namespace traffic
     {
         vertices.insert(v);
     }
+
+    void NodeGraph::AddVertices(std::vector<std::shared_ptr<Node>> nodes)
+    {
+        for(const auto& node : nodes)
+        {
+            this->AddVertex(node);
+        }
+    }
 }
